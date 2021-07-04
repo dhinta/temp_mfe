@@ -1,0 +1,9 @@
+/ng-auth/node_modules
+/ng-auth/dist
+
+/ng-header/node_modules
+/ng-header/dist
+
+/react-dashboard/node_modules
+
+/webc-container/node_modules
