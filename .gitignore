@@ -1,8 +1,8 @@
-/ng-auth/node_modules
-/ng-auth/dist
+/react-auth/node_modules
+/react-auth/dist
 
-/ng-header/node_modules
-/ng-header/dist
+/react-header/node_modules
+/react-header/dist
 
 /react-dashboard/node_modules
 
