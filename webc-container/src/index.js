@@ -1,1 +1,1 @@
-console.log("shell loaded");
+import("./bootstrap");
