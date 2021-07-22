@@ -5,5 +5,7 @@
 /react-header/dist
 
 /react-dashboard/node_modules
+/react-dashboard/dist
 
 /webc-container/node_modules
+/webc-container/dist

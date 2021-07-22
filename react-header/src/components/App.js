@@ -1,10 +1,10 @@
-import { BrowserRouter as Router } from "react-router-dom";
+import { Router } from "react-router-dom";
 
 import Header from "./header/Header";
 
-const App = () => {
+const App = ({ history }) => {
   return (
-    <Router>
+    <Router history={history}>
       <Header />
     </Router>
   );

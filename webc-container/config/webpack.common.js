@@ -1,3 +1,5 @@
+const webpack = require("webpack");
+
 module.exports = {
   module: {
     rules: [
@@ -7,7 +9,7 @@ module.exports = {
         use: {
           loader: "babel-loader",
           options: {
-            presets: ["@babel/preset-env"],
+            presets: ["@babel/preset-env", "@babel/preset-react"],
             plugins: [
               "@babel/plugin-proposal-object-rest-spread",
               "@babel/plugin-transform-runtime",
@@ -17,4 +19,9 @@ module.exports = {
       },
     ],
   },
+  plugins: [
+    new webpack.ProvidePlugin({
+      React: "react",
+    }),
+  ],
 };

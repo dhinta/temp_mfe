@@ -1,14 +1,16 @@
-import { mount as mountHeader } from "@app-header/headerApp";
-import { mount as mountAuth } from "@app-auth/authApp";
+import React from "react";
+import ReactDOM from "react-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 
-try {
-  mountHeader(document.querySelector("#app-shell-header"));
-} catch (error) {
-  console.error(error);
-}
+import App from "../components/App";
 
-try {
-  mountAuth(document.querySelector("#app-shell-body"));
-} catch (error) {
-  console.error(error);
-}
+const mount = () => {
+  ReactDOM.render(
+    <Router>
+      <App />
+    </Router>,
+    document.querySelector("#_shell_App")
+  );
+};
+
+mount();

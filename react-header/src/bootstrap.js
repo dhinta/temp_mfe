@@ -3,9 +3,36 @@ import ReactDOM from "react-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import App from "./components/App";
+import { memoryHistory, browserHistory } from "../libs/history";
 
-const mount = (headerRoot) => {
-  ReactDOM.render(<App />, headerRoot);
+const mountDev = (headerRoot, history) => {
+  ReactDOM.render(<App history={history} />, headerRoot);
+};
+
+const mountContainer = (headerRoot, history, { onNavigate }) => {
+  memoryHistory.listen(onNavigate);
+  ReactDOM.render(<App history={history} />, headerRoot);
+};
+
+const mount = (headerRoot, config) => {
+  const history = config ? memoryHistory : browserHistory;
+  if (config) {
+    mountContainer(headerRoot, history, config);
+  } else {
+    mountDev(headerRoot, history);
+  }
+
+  return {
+    onRouteChange({ pathname: newPathname }) {
+      const {
+        location: { pathname },
+      } = history;
+
+      if (pathname !== newPathname) {
+        history.push(newPathname);
+      }
+    },
+  };
 };
 
 const init = () => {

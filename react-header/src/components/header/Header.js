@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const Header = () => {
   return (
@@ -11,15 +11,15 @@ const Header = () => {
         id="navbarSupportedContent"
       >
         <ul className="navbar-nav mr-auto">
-          <li className="nav-item active">
-            <Link className="nav-link" to="/">
+          <li className="nav-item">
+            <NavLink className="nav-link" to="/" activeClassName="active" exact>
               Home
-            </Link>
+            </NavLink>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" to="/signup">
+            <NavLink className="nav-link" to="/signup" activeClassName="active">
               Signup
-            </Link>
+            </NavLink>
           </li>
         </ul>
         <form className="form-inline my-2 my-lg-0">
