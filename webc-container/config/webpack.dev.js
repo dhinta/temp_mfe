@@ -5,6 +5,7 @@ const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPl
 
 const devConfig = {
   mode: "development",
+  devtool: "source-map",
   devServer: {
     port: 5000,
     historyApiFallback: true,
@@ -13,6 +14,7 @@ const devConfig = {
   plugins: [
     new HtmlWebpackPlugin({
       template: "./public/index.html",
+      favicon: "./public/favicon.ico",
     }),
     new ModuleFederationPlugin({
       name: "host",

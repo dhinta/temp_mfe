@@ -5,6 +5,7 @@ const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPl
 
 const devConfig = {
   mode: "development",
+  devtool: "source-map",
   devServer: {
     port: 5002,
     historyApiFallback: true,
