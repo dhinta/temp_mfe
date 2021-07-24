@@ -12,9 +12,6 @@ const devConfig = {
     open: true,
   },
   plugins: [
-    new HtmlWebpackPlugin({
-      template: "./public/index.html",
-    }),
     new ModuleFederationPlugin({
       name: "header",
       filename: "remoteEntry.js",

@@ -1,4 +1,5 @@
 const webpack = require("webpack");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   module: {
@@ -27,5 +28,9 @@ module.exports = {
     new webpack.ProvidePlugin({
       React: "react",
     }),
+    new HtmlWebpackPlugin({
+      template: "./public/index.html",
+      favicon: "./public/favicon.ico",
+    })
   ],
 };
