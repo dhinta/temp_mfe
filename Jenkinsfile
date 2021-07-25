@@ -3,6 +3,9 @@ pipeline {
     environment { 
         DOMAIN = 'http://localhost:8081'
     }
+    triggers {
+        githubPush()
+    }
     stages {
         stage('Build') { 
             steps {
