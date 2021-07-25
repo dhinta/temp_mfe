@@ -5,7 +5,18 @@ pipeline {
     }
     stages {
         stage('Build') { 
-            steps { 
+            dir('react-auth') {  
+                bat 'git pull'
+                bat 'npm i'
+                bat 'npm run build'
+            }
+            dir('react-header') {  
+                bat 'git pull'
+                bat 'npm i'
+                bat 'npm run build'
+            }
+            dir('webc-container') {  
+                bat 'git pull'
                 bat 'npm i'
                 bat 'npm run build'
             }
