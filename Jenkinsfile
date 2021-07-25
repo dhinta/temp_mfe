@@ -6,8 +6,8 @@ pipeline {
     stages {
         stage('Build') { 
             steps { 
-                pwsh(script: 'npm i')
-                pwsh(script: 'npm run build')
+                sh(script: 'npm i')
+                sh(script: 'npm run build')
             }
         }
         stage('Test'){
