@@ -10,15 +10,12 @@ pipeline {
         stage('Build') { 
             steps {
                 dir('react-auth') {  
-                    bat 'git pull origin master'
                     bat 'npm run build'
                 }
                 dir('react-header') {  
-                    bat 'git pull origin master'
                     bat 'npm run build'
                 }
                 dir('webc-container') {  
-                    bat 'git pull origin master'
                     bat 'npm run build'
                 }
             }
