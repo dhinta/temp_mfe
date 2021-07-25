@@ -6,7 +6,8 @@ pipeline {
     stages {
         stage('Build') { 
             steps { 
-                sh 'echo "whoam"'
+                bat 'npm i'
+                bat 'npm run build'
             }
         }
         stage('Test'){
