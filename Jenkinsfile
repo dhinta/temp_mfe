@@ -17,8 +17,9 @@ pipeline {
                         dir('react-auth') {  
                             echo "auth app ...."
                             bat 'git pull origin master'
-                            bat 'npm i'
+                            // bat 'npm i'
                             bat 'npm run build'
+                            bat 'tar czf auth.tar.gz dist'
                         }
                     }
                     post {
@@ -35,8 +36,9 @@ pipeline {
                         dir('react-header') {  
                             echo "header app ...."
                             bat 'git pull origin master'
-                            bat 'npm i'
+                            // bat 'npm i'
                             bat 'npm run build'
+                            bat 'tar czf header.tar.gz dist'
                         }
                     }
                 }
@@ -48,21 +50,27 @@ pipeline {
                         dir('webc-container') {  
                             echo "shell app ...."
                             bat 'git pull origin master'
-                            bat 'npm i'
+                            // bat 'npm i'
                             bat 'npm run build'
+                            bat 'tar czf shell.tar.gz dist'
                         }
                     }
                 }
             }
         }        
-        stage('Test'){
+        stage('Test') {
             steps {
                 echo "unit testing ...."
             }
         }
-        stage('Deploy') {
-            steps {
-                echo "deploy"
+        stage('Deploy micro apps') {
+            stage('Deploy Auth') {
+                when {
+                    changeset 'react-auth/**'
+                }
+                steps {
+                    echo "unit testing ...."
+                }
             }
         }
     }
