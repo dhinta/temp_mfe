@@ -64,12 +64,14 @@ pipeline {
             }
         }
         stage('Deploy micro apps') {
-            stage('Deploy Auth') {
-                when {
-                    changeset 'react-auth/**'
-                }
-                steps {
-                    echo "unit testing ...."
+            stages {
+                stage('Deploy Auth') {
+                    when {
+                        changeset 'react-auth/**'
+                    }
+                    steps {
+                        echo "unit testing ...."
+                    }
                 }
             }
         }
