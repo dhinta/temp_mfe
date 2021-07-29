@@ -74,11 +74,11 @@ pipeline {
                     }
                     steps {
                         dir('react-auth') {
-                            // bat 'aws s3 rm $S3_PATH/auth/auth.tar.gz'
-                            // bat 'aws s3 cp ./auth.tar.gz $S3_PATH/auth.tar.gz'
+                            // bat 'aws s3 rm ${S3_PATH}/auth/auth.tar.gz'
+                            // bat 'aws s3 cp ./auth.tar.gz ${S3_PATH}/auth.tar.gz'
 
-                            bat 'aws s3 rm $S3_PATH/auth --recursive'
-                            bat 'aws s3 cp ./dist $S3_PATH/auth --recursive'
+                            bat 'aws s3 rm ${S3_PATH}/auth --recursive'
+                            bat 'aws s3 cp ./dist ${S3_PATH}/auth --recursive'
                         }
                     }
                 }
@@ -88,11 +88,11 @@ pipeline {
                     }
                     steps {
                         dir('react-header') {
-                            // bat 'aws s3 rm $S3_PATH/header/header.tar.gz'
-                            // bat 'aws s3 cp ./auth.tar.gz $S3_PATH/header/header.tar.gz'
+                            // bat 'aws s3 rm ${S3_PATH}/header/header.tar.gz'
+                            // bat 'aws s3 cp ./auth.tar.gz ${S3_PATH}/header/header.tar.gz'
 
-                            bat 'aws s3 rm $S3_PATH/header --recursive'
-                            bat 'aws s3 cp ./dist $S3_PATH/header --recursive'
+                            bat 'aws s3 rm ${S3_PATH}/header --recursive'
+                            bat 'aws s3 cp ./dist ${S3_PATH}/header --recursive'
                         }
                     }
                 }
@@ -102,11 +102,11 @@ pipeline {
                     }
                     steps {
                         dir('webc-container') {
-                            // bat 'aws s3 rm $S3_PATH/shell/header.tar.gz'
-                            // bat 'aws s3 cp ./auth.tar.gz $S3_PATH/shell/header.tar.gz'
+                            // bat 'aws s3 rm ${S3_PATH}/shell/header.tar.gz'
+                            // bat 'aws s3 cp ./auth.tar.gz ${S3_PATH}/shell/header.tar.gz'
 
-                            bat 'aws s3 rm $S3_PATH/shell --recursive'
-                            bat 'aws s3 cp ./dist $S3_PATH/shell --recursive'
+                            bat 'aws s3 rm ${S3_PATH}/shell --recursive'
+                            bat 'aws s3 cp ./dist ${S3_PATH}/shell --recursive'
                         }
                     }
                 }
