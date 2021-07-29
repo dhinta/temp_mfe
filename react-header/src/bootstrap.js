@@ -15,6 +15,7 @@ const mountContainer = (headerRoot, history, { onNavigate }) => {
 };
 
 const mount = (headerRoot, config) => {
+  console.log("header");
   const history = config ? memoryHistory : browserHistory;
   if (config) {
     mountContainer(headerRoot, history, config);
