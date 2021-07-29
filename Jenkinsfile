@@ -1,7 +1,10 @@
 pipeline { 
     agent any 
     environment { 
-        DOMAIN = 'http://localhost:8081'
+        DOMAIN = 'http://mono-local-temp.s3-website.ap-south-1.amazonaws.com/'
+        S3_PATH = 's3://mono-local-temp'
+        AWS_ACCESS_KEY_ID     = credentials('jenkins-aws-secret-key-id')
+        AWS_SECRET_ACCESS_KEY = credentials('jenkins-aws-secret-access-key')
     }
     triggers {
         githubPush()
@@ -70,7 +73,41 @@ pipeline {
                         changeset 'react-auth/**'
                     }
                     steps {
-                        echo "unit testing ...."
+                        dir('react-auth') {
+                            bat 'aws s3 rm $S3_PATH/auth/auth.tar.gz'
+                            bat 'aws s3 cp ./auth.tar.gz $S3_PATH/auth.tar.gz'
+
+                            bat 'aws s3 rm $S3_PATH/auth --recursive'
+                            bat 'aws s3 cp ./dist $S3_PATH/auth --recursive'
+                        }
+                    }
+                }
+                stage('Deploy Auth') {
+                    when {
+                        changeset 'react-header/**'
+                    }
+                    steps {
+                        dir('react-header') {
+                            bat 'aws s3 rm $S3_PATH/header/header.tar.gz'
+                            bat 'aws s3 cp ./auth.tar.gz $S3_PATH/header/header.tar.gz'
+
+                            bat 'aws s3 rm $S3_PATH/header --recursive'
+                            bat 'aws s3 cp ./dist $S3_PATH/header --recursive'
+                        }
+                    }
+                }
+                stage('Deploy shell') {
+                    when {
+                        changeset 'webc-container/**'
+                    }
+                    steps {
+                        dir('webc-container') {
+                            bat 'aws s3 rm $S3_PATH/shell/header.tar.gz'
+                            bat 'aws s3 cp ./auth.tar.gz $S3_PATH/shell/header.tar.gz'
+
+                            bat 'aws s3 rm $S3_PATH/shell --recursive'
+                            bat 'aws s3 cp ./dist $S3_PATH/shell --recursive'
+                        }
                     }
                 }
             }
