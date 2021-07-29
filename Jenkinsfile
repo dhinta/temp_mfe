@@ -63,7 +63,7 @@ pipeline {
         }        
         stage('Test') {
             steps {
-                echo "unit testing ...."
+                echo '${S3_PATH}'
             }
         }
         stage('Deploy micro apps') {
