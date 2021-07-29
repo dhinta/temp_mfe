@@ -15,7 +15,6 @@ const containerMount = (appRoot, history, { onNavigate }) => {
 };
 
 const mount = (appRoot, config) => {
-  console.log("auth");
   const history = config ? memoryHistory : browserHistory;
   if (config) {
     containerMount(appRoot, history, config);

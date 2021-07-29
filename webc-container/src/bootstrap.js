@@ -5,7 +5,6 @@ import { BrowserRouter as Router } from "react-router-dom";
 import App from "../components/App";
 
 const mount = () => {
-  console.log("Shell");
   ReactDOM.render(
     <Router>
       <App />
