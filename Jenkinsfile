@@ -82,7 +82,7 @@ pipeline {
                         }
                     }
                 }
-                stage('Deploy Auth') {
+                stage('Deploy header') {
                     when {
                         changeset 'react-header/**'
                     }
