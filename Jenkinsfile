@@ -63,7 +63,7 @@ pipeline {
         }        
         stage('Test') {
             steps {
-                echo "${S3_PATH}"
+                echo "Testing"
             }
         }
         stage('Deploy micro apps') {
@@ -77,8 +77,8 @@ pipeline {
                             // bat 'aws s3 rm ${S3_PATH}/auth/auth.tar.gz'
                             // bat 'aws s3 cp ./auth.tar.gz ${S3_PATH}/auth.tar.gz'
 
-                            bat 'aws s3 rm ${S3_PATH}/auth --recursive'
-                            bat 'aws s3 cp ./dist ${S3_PATH}/auth --recursive'
+                            bat "aws s3 rm ${S3_PATH}/auth --recursive"
+                            bat "aws s3 cp ./dist ${S3_PATH}/auth --recursive"
                         }
                     }
                 }
@@ -91,8 +91,8 @@ pipeline {
                             // bat 'aws s3 rm ${S3_PATH}/header/header.tar.gz'
                             // bat 'aws s3 cp ./auth.tar.gz ${S3_PATH}/header/header.tar.gz'
 
-                            bat 'aws s3 rm ${S3_PATH}/header --recursive'
-                            bat 'aws s3 cp ./dist ${S3_PATH}/header --recursive'
+                            bat "aws s3 rm ${S3_PATH}/header --recursive"
+                            bat "aws s3 cp ./dist ${S3_PATH}/header --recursive"
                         }
                     }
                 }
@@ -105,8 +105,8 @@ pipeline {
                             // bat 'aws s3 rm ${S3_PATH}/shell/header.tar.gz'
                             // bat 'aws s3 cp ./auth.tar.gz ${S3_PATH}/shell/header.tar.gz'
 
-                            bat 'aws s3 rm ${S3_PATH}/shell --recursive'
-                            bat 'aws s3 cp ./dist ${S3_PATH}/shell --recursive'
+                            bat "aws s3 rm ${S3_PATH}/shell --recursive"
+                            bat "aws s3 cp ./dist ${S3_PATH}/shell --recursive"
                         }
                     }
                 }
