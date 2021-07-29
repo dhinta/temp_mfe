@@ -1,7 +1,7 @@
 pipeline { 
     agent any 
     environment { 
-        DOMAIN = 'http://mono-local-temp.s3-website.ap-south-1.amazonaws.com/'
+        DOMAIN = 'http://mono-local-temp.s3-website.ap-south-1.amazonaws.com'
         S3_PATH = 's3://mono-local-temp'
         AWS_ACCESS_KEY_ID     = credentials('jenkins-aws-secret-key-id')
         AWS_SECRET_ACCESS_KEY = credentials('jenkins-aws-secret-access-key')
