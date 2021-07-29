@@ -22,7 +22,7 @@ pipeline {
                             bat 'git pull origin master'
                             // bat 'npm i'
                             bat 'npm run build'
-                            bat 'tar czf auth.tar.gz dist'
+                            // bat 'tar czf auth.tar.gz dist'
                         }
                     }
                     post {
@@ -41,7 +41,7 @@ pipeline {
                             bat 'git pull origin master'
                             // bat 'npm i'
                             bat 'npm run build'
-                            bat 'tar czf header.tar.gz dist'
+                            // bat 'tar czf header.tar.gz dist'
                         }
                     }
                 }
@@ -55,7 +55,7 @@ pipeline {
                             bat 'git pull origin master'
                             // bat 'npm i'
                             bat 'npm run build'
-                            bat 'tar czf shell.tar.gz dist'
+                            // bat 'tar czf shell.tar.gz dist'
                         }
                     }
                 }
@@ -74,8 +74,8 @@ pipeline {
                     }
                     steps {
                         dir('react-auth') {
-                            bat 'aws s3 rm $S3_PATH/auth/auth.tar.gz'
-                            bat 'aws s3 cp ./auth.tar.gz $S3_PATH/auth.tar.gz'
+                            // bat 'aws s3 rm $S3_PATH/auth/auth.tar.gz'
+                            // bat 'aws s3 cp ./auth.tar.gz $S3_PATH/auth.tar.gz'
 
                             bat 'aws s3 rm $S3_PATH/auth --recursive'
                             bat 'aws s3 cp ./dist $S3_PATH/auth --recursive'
@@ -88,8 +88,8 @@ pipeline {
                     }
                     steps {
                         dir('react-header') {
-                            bat 'aws s3 rm $S3_PATH/header/header.tar.gz'
-                            bat 'aws s3 cp ./auth.tar.gz $S3_PATH/header/header.tar.gz'
+                            // bat 'aws s3 rm $S3_PATH/header/header.tar.gz'
+                            // bat 'aws s3 cp ./auth.tar.gz $S3_PATH/header/header.tar.gz'
 
                             bat 'aws s3 rm $S3_PATH/header --recursive'
                             bat 'aws s3 cp ./dist $S3_PATH/header --recursive'
@@ -102,8 +102,8 @@ pipeline {
                     }
                     steps {
                         dir('webc-container') {
-                            bat 'aws s3 rm $S3_PATH/shell/header.tar.gz'
-                            bat 'aws s3 cp ./auth.tar.gz $S3_PATH/shell/header.tar.gz'
+                            // bat 'aws s3 rm $S3_PATH/shell/header.tar.gz'
+                            // bat 'aws s3 cp ./auth.tar.gz $S3_PATH/shell/header.tar.gz'
 
                             bat 'aws s3 rm $S3_PATH/shell --recursive'
                             bat 'aws s3 cp ./dist $S3_PATH/shell --recursive'
