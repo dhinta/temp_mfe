@@ -4,7 +4,6 @@ import { mount as mountHeader } from "@app-header/headerApp";
 import { mount as mountAuth } from "@app-auth/authApp";
 
 const App = ({ history }) => {
-  console.log('shell');
   const headerRef = useRef();
   const bodyRef = useRef();
 
