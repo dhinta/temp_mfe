@@ -24,7 +24,6 @@ const mount = (headerRoot, config) => {
 
   return {
     onRouteChange({ pathname: newPathname }) {
-      // const history = getHistory(config);
       let {
         location: { pathname },
       } = history;

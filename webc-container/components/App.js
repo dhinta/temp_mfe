@@ -8,12 +8,10 @@ const App = ({ history }) => {
   const bodyRef = useRef();
 
   const onNavigate = ({ pathname: nextPathname }) => {
-    console.log("location", history.location);
     let currentPath = history.location.pathname
       .replace(/^\/+|\/+$/g, "")
       .trim();
     nextPathname = nextPathname.replace(/^\/+|\/+$/g, "").trim();
-    // console.log(currentPath, nextPathname, currentPath !== nextPathname);
     if (currentPath !== nextPathname) {
       history.push(nextPathname);
     }
