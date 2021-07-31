@@ -67,7 +67,18 @@ pipeline {
             }
         }
         stage('Deploy micro apps') {
-            stages {
+            stages {                
+                stage('Deploy shell') {
+                    when {
+                        changeset 'webc-container/**'
+                    }
+                    steps {
+                        dir('webc-container') {
+                            bat "aws s3 rm ${S3_PATH} --recursive"
+                            bat "aws s3 cp ./dist ${S3_PATH} --recursive"
+                        }
+                    }
+                }
                 stage('Deploy Auth') {
                     when {
                         changeset 'react-auth/**'
@@ -77,7 +88,7 @@ pipeline {
                             // bat 'aws s3 rm ${S3_PATH}/auth/auth.tar.gz'
                             // bat 'aws s3 cp ./auth.tar.gz ${S3_PATH}/auth.tar.gz'
 
-                            bat "aws s3 rm ${S3_PATH}/auth --recursive"
+                            // bat "aws s3 rm ${S3_PATH}/auth --recursive"
                             bat "aws s3 cp ./dist ${S3_PATH}/auth --recursive"
                         }
                     }
@@ -91,19 +102,8 @@ pipeline {
                             // bat 'aws s3 rm ${S3_PATH}/header/header.tar.gz'
                             // bat 'aws s3 cp ./auth.tar.gz ${S3_PATH}/header/header.tar.gz'
 
-                            bat "aws s3 rm ${S3_PATH}/header --recursive"
+                            // bat "aws s3 rm ${S3_PATH}/header --recursive"
                             bat "aws s3 cp ./dist ${S3_PATH}/header --recursive"
-                        }
-                    }
-                }
-                stage('Deploy shell') {
-                    when {
-                        changeset 'webc-container/**'
-                    }
-                    steps {
-                        dir('webc-container') {
-                            bat "aws s3 rm ${S3_PATH} --recursive --exclude 'header/' --exclude 'auth/'"
-                            bat "aws s3 cp ./dist ${S3_PATH} --recursive"
                         }
                     }
                 }
