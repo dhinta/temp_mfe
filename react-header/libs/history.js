@@ -1,6 +1,12 @@
 import { createMemoryHistory, createBrowserHistory } from "history";
 
-const memoryHistory = createMemoryHistory();
-const browserHistory = createBrowserHistory();
 
-export { memoryHistory, browserHistory };
+const getHistory = (config) => {
+  if (config) {
+    return createMemoryHistory();
+  } else {
+    return createBrowserHistory();
+  }
+};
+
+export { getHistory };

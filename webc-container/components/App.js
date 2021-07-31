@@ -1,16 +1,20 @@
 import { useRef, useEffect } from "react";
-import { useHistory } from "react-router-dom";
 
 import { mount as mountHeader } from "@app-header/headerApp";
 import { mount as mountAuth } from "@app-auth/authApp";
 
-const App = () => {
+const App = ({ history }) => {
   const headerRef = useRef();
   const bodyRef = useRef();
-  const history = useHistory();
 
   const onNavigate = ({ pathname: nextPathname }) => {
-    if (history.location.pathname !== nextPathname) {
+    console.log("location", history.location);
+    let currentPath = history.location.pathname
+      .replace(/^\/+|\/+$/g, "")
+      .trim();
+    nextPathname = nextPathname.replace(/^\/+|\/+$/g, "").trim();
+    // console.log(currentPath, nextPathname, currentPath !== nextPathname);
+    if (currentPath !== nextPathname) {
       history.push(nextPathname);
     }
   };
@@ -24,8 +28,8 @@ const App = () => {
       onNavigate,
     });
 
-    headerRouteChange(location);
-    authRouteChange(location);
+    headerRouteChange(history.location);
+    authRouteChange(history.location);
 
     const onHistoryChange = history.listen((location) => {
       headerRouteChange(location);

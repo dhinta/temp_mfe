@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import { memoryHistory, browserHistory } from "./libs/history";
+import { getHistory } from "./libs/history";
 import App from "./components/App";
 
 const devMount = (appRoot, history) => {
@@ -15,7 +15,7 @@ const containerMount = (appRoot, history, { onNavigate }) => {
 };
 
 const mount = (appRoot, config) => {
-  const history = config ? memoryHistory : browserHistory;
+  const history = getHistory(config);
   if (config) {
     containerMount(appRoot, history, config);
   } else {
@@ -24,9 +24,12 @@ const mount = (appRoot, config) => {
 
   return {
     onRouteChange: ({ pathname: newPathname }) => {
-      const {
+      // const history = getHistory(config);
+      let {
         location: { pathname },
       } = history;
+      pathname = pathname.replace(/^\/+|\/+$/g, "").trim();
+      newPathname = newPathname.replace(/^\/+|\/+$/g, "").trim();
       if (pathname !== newPathname) {
         history.push(newPathname);
       }

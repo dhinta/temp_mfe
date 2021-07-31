@@ -3,19 +3,19 @@ import ReactDOM from "react-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import App from "./components/App";
-import { memoryHistory, browserHistory } from "../libs/history";
+import { getHistory } from "../libs/history";
 
 const mountDev = (headerRoot, history) => {
   ReactDOM.render(<App history={history} />, headerRoot);
 };
 
 const mountContainer = (headerRoot, history, { onNavigate }) => {
-  memoryHistory.listen(onNavigate);
+  history.listen(onNavigate);
   ReactDOM.render(<App history={history} />, headerRoot);
 };
 
 const mount = (headerRoot, config) => {
-  const history = config ? memoryHistory : browserHistory;
+  const history = getHistory(config);
   if (config) {
     mountContainer(headerRoot, history, config);
   } else {
@@ -24,9 +24,12 @@ const mount = (headerRoot, config) => {
 
   return {
     onRouteChange({ pathname: newPathname }) {
-      const {
+      // const history = getHistory(config);
+      let {
         location: { pathname },
       } = history;
+      pathname = pathname.replace(/^\/+|\/+$/g, "").trim();
+      newPathname = newPathname.replace(/^\/+|\/+$/g, "").trim();
 
       if (pathname !== newPathname) {
         history.push(newPathname);

@@ -1,13 +1,16 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router } from "react-router-dom";
+import { createBrowserHistory } from "history";
 
 import App from "../components/App";
 
 const mount = () => {
+  const history = createBrowserHistory();
+
   ReactDOM.render(
-    <Router>
-      <App />
+    <Router history={history}>
+      <App history={history} />
     </Router>,
     document.querySelector("#_shell_App")
   );

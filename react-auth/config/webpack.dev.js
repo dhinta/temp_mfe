@@ -1,6 +1,9 @@
 const commonConfig = require("./webpack.common");
 const { merge } = require("webpack-merge");
+const { DefinePlugin } = require("webpack");
 const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
+
+const BASE_PATH = process.env.BASE_PATH || "/";
 
 const devConfig = {
   mode: "development",
@@ -17,6 +20,10 @@ const devConfig = {
       exposes: {
         "./authApp": "./src/bootstrap.js",
       },
+    }),
+    new DefinePlugin({
+      PRODUCTION: JSON.stringify(false),
+      BASE_PATH: JSON.stringify(BASE_PATH),
     }),
   ],
 };
