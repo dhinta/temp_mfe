@@ -102,7 +102,7 @@ pipeline {
                     }
                     steps {
                         dir('webc-container') {
-                            bat "aws s3 rm ${S3_PATH} --recursive --exclude 'header/' --exclude 'auth/'"
+                            bat "aws s3 rm ${S3_PATH} --exclude 'header/' --exclude 'auth/'"
                             bat "aws s3 cp ./dist ${S3_PATH} --recursive"
                         }
                     }
